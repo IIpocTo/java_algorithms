@@ -17,6 +17,11 @@ public class FastCollinearPoints {
         for (int i = 0; i < points.length; i++) {
             Point[] sortedPoints = points.clone();
             Arrays.sort(sortedPoints, i + 1, points.length,  points[i].slopeOrder());
+            if (i == points.length - 3 && points[i].slopeTo(points[i + 1]) == Double.NEGATIVE_INFINITY ||
+                    i == points.length - 3 && points[i].slopeTo(points[i + 2]) == Double.NEGATIVE_INFINITY)
+                throw new IllegalArgumentException("duplicate points");
+            if (i == points.length - 2 && points[i].slopeTo(points[i + 1]) == Double.NEGATIVE_INFINITY)
+                throw new IllegalArgumentException("duplicate points");
             for (int j = i + 1; j < points.length - 2;) {
                 final double slopeToFirst = points[i].slopeTo(sortedPoints[j]);
                 final double slopeToSecond = points[i].slopeTo(sortedPoints[j + 1]);
