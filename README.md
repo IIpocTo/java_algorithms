@@ -1,1 +1,1 @@
-# Repository for coursera Princeton's java alghorithms cource.
+# Repository for coursera Princeton's java alghorithms course.
